@@ -3,18 +3,18 @@ const nameInput = $('#name');
 console.log('ipInfoResp.ip');
 console.log('ipInfoResp.ip-2222');
 
-const ipInfoResp = function() {
+const ipInfoRespFunc = function() {
     $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
         return resp;
     });
 };
 
-
+const ipInfoResp= ipInfoRespFunc;
 
 $(document).ready(function () {
 
-    console.log(ipInfoResp.ip());
-    console.log(ipInfoResp.ip());
+    console.log(ipInfoResp);
+    console.log(ipInfoResp.ip);
 
     nameInput.on('change blur', function() {
         const value = nameInput.val();
