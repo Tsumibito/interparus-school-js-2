@@ -1,4 +1,4 @@
-const nameInput = $('#name');
+const nameInput = $('[ip-name]');
 
 console.log('ipInfoResp.ip');
 console.log('ipInfoResp.ip-2222');
