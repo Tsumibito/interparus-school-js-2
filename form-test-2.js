@@ -16,7 +16,7 @@ $(document).ready(function () {
     nameInput.on('change blur', function() {
         const value = nameInput.val();
         console.log(nameInput.val());
-        console.log(ipInfoResp.ip);
+        console.log(ipInfoResp[ip]);
 
         if (value === "") {
             nameInput.removeClass("success");
