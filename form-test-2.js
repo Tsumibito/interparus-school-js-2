@@ -1,12 +1,15 @@
 const nameInput = $('#name');
 
+console.log('ipInfoResp.ip');
+console.log('ipInfoResp.ip-2222');
+
 const ipInfoResp = function() {
     $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
         return resp;
     });
 };
 
-console.log('ipInfoResp.ip');
+
 
 $(document).ready(function () {
 
