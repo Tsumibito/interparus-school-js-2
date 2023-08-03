@@ -1,7 +1,7 @@
 const nameInput = $('[ip-name]');
 
 console.log('ipInfoResp.ip');
-console.log('ipInfoResp.ip-2222');
+console.log('ipInfoResp.ip-2223');
 
 const ipInfoResp = $.getJSON('https://ipapi.co/json/', function(data){
     console.log(data)
