@@ -14,6 +14,7 @@ const ipInfoResp = function() {
 $(document).ready(function () {
 
     console.log(ipInfoResp.ip());
+    console.log(ipInfoResp.ip());
 
     nameInput.on('change blur', function() {
         const value = nameInput.val();
