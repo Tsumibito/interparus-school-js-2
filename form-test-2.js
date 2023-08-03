@@ -3,13 +3,10 @@ const nameInput = $('[ip-name]');
 console.log('ipInfoResp.ip');
 console.log('ipInfoResp.ip-2222');
 
-const ipInfoRespFunc = function() {
-    $.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
-        return resp;
-    });
-};
+const ipInfoResp = $.getJSON('https://ipapi.co/8.8.8.8/json/', function(data){
+    console.log(data)
+})
 
-const ipInfoResp= ipInfoRespFunc;
 
 $(document).ready(function () {
 
