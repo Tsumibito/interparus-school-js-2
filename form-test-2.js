@@ -11,12 +11,12 @@ const ipInfoResp = $.getJSON('https://ipapi.co/json/', function(data){
 $(document).ready(function () {
 
     console.log(ipInfoResp);
-    console.log(ipInfoResp.ip);
+    console.log(ipInfoResp['ip']);
 
     nameInput.on('change blur', function() {
         const value = nameInput.val();
         console.log(nameInput.val());
-        console.log(ipInfoResp[ip]);
+        console.log(ipInfoResp['ip']);
 
         if (value === "") {
             nameInput.removeClass("success");
