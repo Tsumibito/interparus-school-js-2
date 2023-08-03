@@ -6,7 +6,7 @@ const ipInfoResp = function() {
     });
 };
 
-
+console.log('ipInfoResp.ip');
 
 $(document).ready(function () {
 
