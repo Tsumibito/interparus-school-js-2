@@ -11,7 +11,7 @@ const ipInfoResp = $.getJSON( "https://ipapi.co/json/", function( json ) {
 
 $(document).ready(function () {
 
-    console.log(ipInfoResp);
+    console.log(ipInfoResp.ip );
 
 
     nameInput.on('change blur', function() {
