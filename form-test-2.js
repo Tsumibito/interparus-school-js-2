@@ -5,6 +5,7 @@ console.log('ipInfoResp.ip-2223');
 
 const ipInfoResp = $.getJSON( "https://ipapi.co/json/", function( json ) {
     console.log( "JSON Data: " + json.ip );
+    return json
 });
 
 
