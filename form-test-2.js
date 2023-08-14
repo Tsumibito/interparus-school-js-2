@@ -18,6 +18,7 @@ $(document).ready(function () {
         geoIpLookup: ipInfoResp.country_code,
     });
 
+
     nameInput.on('change blur', function() {
         const value = nameInput.val();
         console.log(nameInput.val());
