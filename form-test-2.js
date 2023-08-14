@@ -18,7 +18,8 @@ $(document).ready(function () {
         separateDialCode: true,
         nationalMode: true,
         initialCountry: "auto",
-        geoIpLookup: "US", //ipInfoResp.country_code,
+        geoIpLookup: "us", //ipInfoResp.country_code,
+        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
     });
 
 
