@@ -12,6 +12,7 @@ const ipInfoResp = $.getJSON( "https://ipapi.co/json/", function( json ) {
 
 
 $(document).ready(function () {
+
     phoneInput.intlTelInput ({
         autoHideDialCode: true,
         separateDialCode: true,
@@ -19,6 +20,7 @@ $(document).ready(function () {
         initialCountry: "auto",
         geoIpLookup: ipInfoResp.country_code,
     });
+
 
 
     /*
