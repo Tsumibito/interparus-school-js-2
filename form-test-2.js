@@ -4,8 +4,7 @@ const phoneInput = $('#phone');
 
 
 const ipInfoResp = $.getJSON( "https://ipapi.co/json/", function( json ) {
-    console.log( "JSON Data: " + json.ip );
-    return json
+    return Promise(json)
 });
 
 
@@ -18,7 +17,7 @@ $(document).ready(function () {
         separateDialCode: true,
         nationalMode: true,
         initialCountry: "auto",
-        geoIpLookup: callback => ipInfoResp.country_code,
+        geoIpLookup: ipInfoResp.country_code,
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
     });
 
