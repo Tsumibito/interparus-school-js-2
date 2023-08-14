@@ -8,16 +8,15 @@ const ipInfoResp = $.getJSON( "https://ipapi.co/json/", function( json ) {
     console.log( "JSON Data: " + json.ip );
     return json
 });
+
+window.intlTelInput(phoneInput, {
+    autoHideDialCode: true,
+    separateDialCode: true,
+    nationalMode: true,
+    initialCountry: "auto",
+    geoIpLookup: ipInfoResp.country_code,
+});
 $(document).ready(function () {
-
-    window.intlTelInput(phoneInput, {
-        autoHideDialCode: true,
-        separateDialCode: true,
-        nationalMode: true,
-        initialCountry: "auto",
-        geoIpLookup: ipInfoResp.country_code,
-    });
-
 
     nameInput.on('change blur', function() {
         const value = nameInput.val();
