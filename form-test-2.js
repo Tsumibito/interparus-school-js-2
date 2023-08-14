@@ -14,7 +14,7 @@ window.intlTelInput(phoneInput, {
     separateDialCode: true,
     nationalMode: true,
     initialCountry: "auto",
-    geoIpLookup: ipInfoResp.country_code,
+    // geoIpLookup: ipInfoResp.country_code,
 });
 $(document).ready(function () {
 
