@@ -9,7 +9,7 @@ const ipInfoResp = $.getJSON( "https://ipapi.co/json/", function( json ) {
     return json
 });
 
-$("#phone").intlTelInput({
+$('[Phone]').intlTelInput({
     autoHideDialCode: true,
     separateDialCode: true,
     nationalMode: true,
