@@ -18,7 +18,7 @@ $(document).ready(function () {
         separateDialCode: true,
         nationalMode: true,
         initialCountry: "auto",
-        geoIpLookup: ipInfoResp.country_code,
+        geoIpLookup: "US", //ipInfoResp.country_code,
     });
 
 
