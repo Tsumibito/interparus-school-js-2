@@ -1,5 +1,5 @@
 const nameInput = $('[ip-name]');
-// const phoneInput = $('#phone');
+const phoneInput = $('#phone');
 
 
 
@@ -12,7 +12,7 @@ const ipInfoResp = $.getJSON( "https://ipapi.co/json/", function( json ) {
 
 
 $(document).ready(function () {
-    $('#phone').intlTelInput ({
+    phoneInput.intlTelInput ({
         autoHideDialCode: true,
         separateDialCode: true,
         nationalMode: true,
