@@ -1,5 +1,5 @@
 const nameInput = $('[ip-name]');
-var phoneInput = document.querySelector("#Phone");
+var phoneInput = $("#Phone");
 
 console.log('ipInfoResp.ip');
 console.log('ipInfoResp.ip-2223');
@@ -9,13 +9,14 @@ const ipInfoResp = $.getJSON( "https://ipapi.co/json/", function( json ) {
     return json
 });
 
-window.intlTelInput(phoneInput, {
+phoneInput.intlTelInput({
     autoHideDialCode: true,
     separateDialCode: true,
     nationalMode: true,
     initialCountry: "auto",
     // geoIpLookup: ipInfoResp.country_code,
 });
+
 $(document).ready(function () {
 
     nameInput.on('change blur', function() {
