@@ -1,20 +1,6 @@
 //const nameInput = $('[ip-name]');
 const phoneInput = $('#phone');
-var obj = {"country_code":"ca",};
-
-
-ipInfo()
-    fetch("https://ipapi.co/json/")
-        .then((response) => response.json())
-        .then((data) => {
-            obj = data;
-            console.log('In func: ', obj.country_code);
-            return obj;
-        })
-        .catch(failureCallback)
-
-
-const ipInfoResp = ipInfo();
+var test;
 
 $(document).ready(function () {
 
@@ -27,13 +13,18 @@ $(document).ready(function () {
         showFlags:false,
         preferredCountries: ["de","fr","ua" ],
         responsiveDropdown: false,
-        geoIpLookup: function(cb){
-            cb( ipInfoResp.country_code);
+        geoIpLookup: callback => {
+            fetch("https://ipapi.co/json")
+                .then(res => res.json())
+                .then(data => {
+                    callback(data.country_code)
+                    test = data
+                    console.log(test);
+                })
+                .catch(() => callback("ca"));
         },
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
     });
-
-    //ipInfoResp.resolve().then(() => phoneInput.selectCountry(ipInfoResp.country_code));
 
 
 
