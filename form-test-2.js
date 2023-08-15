@@ -13,11 +13,13 @@ $(document).ready(function () {
 
     phoneInput.intlTelInput({
         initialCountry: "auto",
-        geoIpLookup: callback => {
-           ipInfoResp.country_code;
-        },
+        formatOnDisplay:true,
+        geoIpLookup: null,
+        showFlags:false,
+        preferredCountries: ["fr","de","ua","pl" ],
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
     });
+
 
 
 
