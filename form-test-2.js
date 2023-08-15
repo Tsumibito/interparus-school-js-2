@@ -19,7 +19,7 @@ $(document).ready(function () {
         preferredCountries: ["de","fr","ua" ],
         responsiveDropdown: false,
         geoIpLookup: function(cb){
-            cb('ca');
+            cb(ipInfoResp.country_code);
         },
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
     });
