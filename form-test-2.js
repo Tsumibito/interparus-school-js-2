@@ -18,8 +18,8 @@ $(document).ready(function () {
         showFlags:false,
         preferredCountries: ["de","fr","ua" ],
         responsiveDropdown: false,
-        geoIpLookup: function(cb){
-            cb(ipInfoResp.country_code);
+        geoIpLookup: async function(cb){
+            cb(await ipInfoResp.country_code);
         },
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
     });
