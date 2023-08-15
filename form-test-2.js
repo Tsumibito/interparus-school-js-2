@@ -1,42 +1,26 @@
 //const nameInput = $('[ip-name]');
-const phoneInput = document.querySelector("#phone"); //$('#phone');
-var test = [];
+const phoneInput = $('#phone');
 
-/*
-async function fetchIpapiJSON() {
-    const response = await fetch('https://ipapi.co/json/');
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return await response.json();
-};
-
-const ipInfoResp = fetchIpapiJSON().then(json);
-console.log(ipInfoResp);
-*/
-
-const ipInfoRespCC = fetch("https://ipapi.co/json/")
+const ipInfoResp = fetch("https://ipapi.co/json/")
     .then((response) => response.json())
     .then((data) => {
         console.log('In func: ', data);
         return data;
     });
 
-window.intlTelInput(phoneInput, {
-    initialCountry: "auto",
-    geoIpLookup: callback => {
-        fetch("https://ipapi.co/json")
-            .then(res => res.json())
-            .then(data => callback(data.country_code))
-            .catch(() => callback("us"));
-    },
-    utilsScript: "/intl-tel-input/js/utils.js?1690975972744" // just for formatting/placeholders etc
-});
 
 $(document).ready(function () {
 
+    phoneInput.intlTelInput({
+        initialCountry: "auto",
+        geoIpLookup: callback => {
+            return ipInfoResp.country_code;
+        },
+        utilsScript: "/intl-tel-input/js/utils.js?1690975972744",
+    });
 
-    console.log('In doc: ', test);
+
+
 
 
     /*
