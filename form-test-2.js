@@ -6,8 +6,6 @@ var ipInfo;
 
 $(document).ready(function () {
 
-    console.log('In doc: ', window.ipInfoResp);
-
     phoneInput.intlTelInput({
         initialCountry: "auto",
         formatOnDisplay:true,
