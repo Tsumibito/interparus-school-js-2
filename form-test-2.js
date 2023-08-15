@@ -23,7 +23,7 @@ const ipInfoRespCC = fetch("https://ipapi.co/json/")
 
 $(document).ready(function () {
 
-    console.log('in documtnt: ', ipInfoRespCC);
+    console.log('in document: ', ipInfoRespCC.then(data));
 
 
 
