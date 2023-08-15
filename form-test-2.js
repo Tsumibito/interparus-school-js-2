@@ -23,8 +23,8 @@ const ipInfoRespCC = fetch("https://ipapi.co/json/")
 const ipInfoResp = async () => {
     const data = await ipInfoRespCC;
     phoneInput.intlTelInput ({
-        initialCountry: data.country_code
-    };
+        initialCountry: data.country_code,
+    });
     console.log('In func 2: ',data.country_code);
 };
 
