@@ -13,7 +13,7 @@ $(document).ready(function () {
         autoHideDialCode: true,
         separateDialCode: true,
         nationalMode: true,
-        initialCountry: "auto",
+        initialCountry: "us",
         geoIpLookup: ipInfoResp.country_code,
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
     });
