@@ -10,13 +10,13 @@ const ipInfoResp = async function fetchIpapiJSON() {
 
 $(document).ready(function () {
 
-    console.log(ipInfoResp);
+    console.log(ipInfoResp.country_code);
 
     phoneInput.intlTelInput ({
         autoHideDialCode: true,
         separateDialCode: true,
         nationalMode: true,
-        initialCountry: "us",
+        initialCountry: "auto",
         geoIpLookup: ipInfoResp.country_code,
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
     });
