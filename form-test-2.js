@@ -24,7 +24,7 @@ const ipInfoRespCC = fetch("https://ipapi.co/json/")
 $(document).ready(function () {
 
 
-    phoneInput.intlTelInput ({
+    const iti = phoneInput.intlTelInput ({
         autoHideDialCode: true,
         separateDialCode: true,
         nationalMode: true,
@@ -34,9 +34,7 @@ $(document).ready(function () {
 
     const ipInfoResp = async () => {
         const data = await ipInfoRespCC;
-        phoneInput.intlTelInput ({
-            initialCountry: "US", //data.country_code,
-        });
+        iti.setCountry("US")
         console.log('In func 2: ',data.country_code);
     };
 
