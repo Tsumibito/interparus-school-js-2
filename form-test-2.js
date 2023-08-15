@@ -13,6 +13,8 @@ window.ipInfoResp = fetch("https://ipapi.co/json/")
 
 $(document).ready(function () {
 
+    console.log('In doc: ', window.ipInfoResp);
+
     phoneInput.intlTelInput({
         initialCountry: "auto",
         formatOnDisplay:true,
