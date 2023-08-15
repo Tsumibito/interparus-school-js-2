@@ -10,7 +10,7 @@ const ipInfoResp = async function fetchIpapiJSON() {
 
 $(document).ready(function () {
 
-    console.log(ipInfoResp.country_code);
+    console.log(await ipInfoResp.country_code);
 
     phoneInput.intlTelInput ({
         autoHideDialCode: true,
