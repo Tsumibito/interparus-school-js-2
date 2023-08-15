@@ -20,13 +20,6 @@ const ipInfoRespCC = fetch("https://ipapi.co/json/")
         return data;
     });
 
-const ipInfoResp = async () => {
-    const data = await ipInfoRespCC;
-    phoneInput.intlTelInput ({
-        initialCountry: data.country_code,
-    });
-    console.log('In func 2: ',data.country_code);
-};
 
 $(document).ready(function () {
 
@@ -38,6 +31,14 @@ $(document).ready(function () {
         initialCountry: "UA",
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
     });
+
+    const ipInfoResp = async () => {
+        const data = await ipInfoRespCC;
+        phoneInput.intlTelInput ({
+            initialCountry: data.country_code,
+        });
+        console.log('In func 2: ',data.country_code);
+    };
 
     console.log('In doc: ', ipInfoResp());
 
