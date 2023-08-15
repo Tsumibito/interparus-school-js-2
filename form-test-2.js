@@ -1,5 +1,6 @@
 const nameInput = $('[ip-name]'),
       lastnameInput = $('[ip-lastname]'),
+      emailInput = $('[ip-email]'),
       phoneInput = $('#phone');
 
 var ipInfo;
@@ -7,8 +8,7 @@ var ipInfo;
 var NameValidationResult = false,
     LastNameValidationResult = false,
     EmailValidationResult = false,
-    PhoneValidationResult = false,
-    MessageValidationResult = false;
+    PhoneValidationResult = false;
 
 $(document).ready(function () {
 
@@ -38,7 +38,7 @@ $(document).ready(function () {
 
             if (value === "") {
                 nameInput.removeClass("success");
-                nameInput.removeClass("error");
+                nameInput.addClass("error");
                 NameValidationResult = false;
             } else if (/^[a-zA-Z\W]+$/.test(value)) {
                 nameInput.addClass("success");
@@ -60,7 +60,7 @@ $(document).ready(function () {
 
             if (value === "") {
                 lastnameInput.removeClass("success");
-                lastnameInput.removeClass("error");
+                lastnameInput.addClass("error");
                 LastNameValidationResult = false;
             } else if (/^[a-zA-Z\W]+$/.test(value)) {
                 lastnameInput.addClass("success");
@@ -76,7 +76,24 @@ $(document).ready(function () {
                 LastNameValidationResult = true;
             }
         });
+    
+        emailInput.on('change blur', function() {
+            const value = emailInput.val();
 
-
+            if (value === "") {
+                emailInput.removeClass("error");
+                emailInput.removeClass("success");
+                EmailValidationResult = false;
+            } else if (!/^[^!#$%&~]*[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                emailInput.addClass("error");
+                emailInput.removeClass("success");
+                EmailValidationResult = false;
+            } else {
+                emailInput.addClass("success");
+                emailInput.removeClass("error");
+                EmailValidationResult = true;
+            }
+        });
+        
 });
 
