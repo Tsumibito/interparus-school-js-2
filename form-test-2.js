@@ -1,5 +1,7 @@
 //const nameInput = $('[ip-name]');
 const phoneInput = $('#phone');
+var test = [];
+
 /*
 async function fetchIpapiJSON() {
     const response = await fetch('https://ipapi.co/json/');
@@ -23,25 +25,21 @@ const ipInfoRespCC = fetch("https://ipapi.co/json/")
 
 $(document).ready(function () {
 
-
-    const iti = phoneInput.intlTelInput ({
-        autoHideDialCode: true,
-        separateDialCode: true,
-        nationalMode: true,
-        initialCountry: "UA",
-        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
+    window.intlTelInput(phoneInput, {
+        initialCountry: "auto",
+        geoIpLookup: callback => {
+            fetch("https://ipapi.co/json")
+                .then(res => res.json())
+                .then(data => {
+                    callback(data.country_code);
+                    test = data;
+                })
+                .catch(() => callback("us"));
+        },
+        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js" // just for formatting/placeholders etc
     });
 
-    const ipInfoResp = async () => {
-        const data = await ipInfoRespCC;
-        iti.setCountry("US")
-        console.log('In func 2: ',data.country_code);
-    };
-
-    console.log('In doc: ', ipInfoResp());
-
-
-
+    console.log('In doc: ', test);
 
 
     /*
