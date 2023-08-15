@@ -16,7 +16,7 @@ console.log(ipInfoResp);
 const ipInfoRespCC = fetch("https://ipapi.co/json/")
     .then((response) => response.json())
     .then((data) => {
-        console.log('In func: ', data.);
+        console.log('In func: ', data);
         return data;
     });
 
