@@ -16,14 +16,14 @@ console.log(ipInfoResp);
 const ipInfoRespCC = fetch("https://ipapi.co/json/")
     .then((response) => response.json())
     .then((data) => {
-        console.log(data.country_code);
+        console.log('In func: ', data.country_code);
         return data.country_code;
     });
 
 
 $(document).ready(function () {
 
-    console.log(ipInfoRespCC);
+    console.log('in documtnt: ', ipInfoRespCC);
 
 
 
