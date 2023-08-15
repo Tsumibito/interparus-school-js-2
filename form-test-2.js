@@ -40,7 +40,7 @@ $(document).ready(function () {
         console.log('In func 2: ',data.country_code);
     };
 
-    console.log('In doc: ', ipInfoResp);
+    console.log('In doc: ', ipInfoResp());
 
 
 
