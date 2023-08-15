@@ -2,6 +2,9 @@
 const phoneInput = $('#phone');
 const ipInfoResp = async function fetchIpapiJSON() {
     const response = await fetch('https://ipapi.co/json/');
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
     return await response.json();
 };
 
