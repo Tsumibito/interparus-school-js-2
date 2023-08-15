@@ -8,13 +8,13 @@ async function fetchIpapiJSON() {
     return await response.json();
 };
 
-const ipInfoResp = fetchIpapiJSON();
+const ipInfoResp = fetchIpapiJSON().then(json);
 console.log(ipInfoResp);
 
 
 $(document).ready(function () {
 
-    ipInfoResp.then(console.log(ipInfoResp.country_code));
+    ipInfoResp.then(console.log);
 
 
 
