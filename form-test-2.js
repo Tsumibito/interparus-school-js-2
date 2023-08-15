@@ -4,6 +4,12 @@ const nameInput = $('[ip-name]'),
 
 var ipInfo;
 
+var NameValidationResult = false,
+    LastNameValidationResult = false,
+    EmailValidationResult = false,
+    PhoneValidationResult = false,
+    MessageValidationResult = false;
+
 $(document).ready(function () {
 
     phoneInput.intlTelInput({
@@ -33,33 +39,41 @@ $(document).ready(function () {
             if (value === "") {
                 nameInput.removeClass("success");
                 nameInput.removeClass("error");
+                NameValidationResult = false;
             } else if (/^[a-zA-Z\W]+$/.test(value)) {
                 nameInput.addClass("success");
                 nameInput.removeClass("error");
+                NameValidationResult = true;
             } else if (/^[0-9]+$/.test(value)) {
                 nameInput.addClass("error");
                 nameInput.removeClass("success");
+                NameValidationResult = false;
             } else {
                 nameInput.addClass("success");
                 nameInput.removeClass("error");
+                NameValidationResult = true;
             }
         });
 
-        lasrnameInput.on('change blur', function() {
+        lastnameInput.on('change blur', function() {
             const value = lastnameInput.val();
 
             if (value === "") {
                 lastnameInput.removeClass("success");
                 lastnameInput.removeClass("error");
+                LastNameValidationResult = false;
             } else if (/^[a-zA-Z\W]+$/.test(value)) {
                 lastnameInput.addClass("success");
                 lastnameInput.removeClass("error");
+                LastNameValidationResult = true;
             } else if (/^[0-9]+$/.test(value)) {
                 lastnameInput.addClass("error");
                 lastnameInput.removeClass("success");
+                LastNameValidationResult = false;
             } else {
                 lastnameInput.addClass("success");
                 lastnameInput.removeClass("error");
+                LastNameValidationResult = true;
             }
         });
 
