@@ -95,26 +95,6 @@ $(document).ready(function () {
             }
         });
 
-    phoneInput.on('change blur', function() {
-        const value = phoneInput.val();
-
-        if (value === "") {
-            phoneInput.addClass("error");
-            phoneInput.removeClass("success");
-            PhoneValidationResult = false;
-        } else if (!phoneInput.isValidNumber()) {
-            phoneInput.addClass("error");
-            phoneInput.removeClass("success");
-            PhoneValidationResult = false;
-        } else {
-            phoneInput.addClass("success");
-            phoneInput.removeClass("error");
-            PhoneValidationResult = true;
-        }
-    });
-
-
-        /*
         phoneInput.on('change blur', function() {
             const value = phoneInput.val();
 
@@ -132,6 +112,6 @@ $(document).ready(function () {
                 PhoneValidationResult = true;
             }
         });
-        */
+
 });
 
