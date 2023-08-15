@@ -12,7 +12,7 @@ var NameValidationResult = false,
 
 $(document).ready(function () {
 
-    phoneInput.intlTelInput({
+    var iti = phoneInput.intlTelInput({
         initialCountry: "auto",
         formatOnDisplay:true,
         nationalMode: false,
@@ -102,7 +102,7 @@ $(document).ready(function () {
             phoneInput.addClass("error");
             phoneInput.removeClass("success");
             PhoneValidationResult = false;
-        } else if (!phoneInput.intlTelInput().isValidNumber()) {
+        } else if (!iti.isValidNumber()) {
             phoneInput.addClass("error");
             phoneInput.removeClass("success");
             PhoneValidationResult = false;
