@@ -14,9 +14,9 @@ $(document).ready(function () {
     phoneInput.intlTelInput({
         initialCountry: "auto",
         geoIpLookup: callback => {
-            return ipInfoResp.country_code;
+           ipInfoResp.country_code;
         },
-        utilsScript: "/intl-tel-input/js/utils.js?1690975972744",
+        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
     });
 
 
