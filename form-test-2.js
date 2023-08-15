@@ -35,7 +35,7 @@ $(document).ready(function () {
     const ipInfoResp = async () => {
         const data = await ipInfoRespCC;
         phoneInput.intlTelInput ({
-            initialCountry: data.country_code,
+            initialCountry: "US", //data.country_code,
         });
         console.log('In func 2: ',data.country_code);
     };
