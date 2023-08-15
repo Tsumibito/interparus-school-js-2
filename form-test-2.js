@@ -1,5 +1,5 @@
 //const nameInput = $('[ip-name]');
-const phoneInput = $('#phone');
+const phoneInput = document.querySelector("#phone"); //$('#phone');
 var test = [];
 
 /*
