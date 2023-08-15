@@ -1,5 +1,6 @@
 //const nameInput = $('[ip-name]');
 const phoneInput = $('#phone');
+/*
 async function fetchIpapiJSON() {
     const response = await fetch('https://ipapi.co/json/');
     if (!response.ok) {
@@ -10,11 +11,18 @@ async function fetchIpapiJSON() {
 
 const ipInfoResp = fetchIpapiJSON().then(json);
 console.log(ipInfoResp);
+*/
+
+const ipInfoRespCC = fetch("https://ipapi.co/json/")
+    .then((response) => response.json())
+    .then((country_code) => {
+        return ucountry_code;
+    });
 
 
 $(document).ready(function () {
 
-    ipInfoResp.then(console.log);
+    console.log(ipInfoRespCC);
 
 
 
@@ -23,7 +31,7 @@ $(document).ready(function () {
         separateDialCode: true,
         nationalMode: true,
         initialCountry: "auto",
-        geoIpLookup: ipInfoResp.then().country_code,
+        geoIpLookup: ipInfoRespCC,
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
     });
 
