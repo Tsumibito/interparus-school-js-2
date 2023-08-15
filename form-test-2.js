@@ -1,6 +1,8 @@
-//const nameInput = $('[ip-name]');
-const phoneInput = $('#phone');
-var test;
+const nameInput = $('[ip-name]'),
+      lastnameInput = $('[ip-lastname]'),
+      phoneInput = $('#phone');
+
+var ipInfo;
 
 $(document).ready(function () {
 
@@ -18,22 +20,17 @@ $(document).ready(function () {
                 .then(res => res.json())
                 .then(data => {
                     callback(data.country_code)
-                    test = data
-                    console.log(test);
+                    ipInfo = data
+                    console.log(ipInfo);
                 })
                 .catch(() => callback("ca"));
         },
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
     });
 
-
-
-
-
-    /*
         nameInput.on('change blur', function() {
             const value = nameInput.val();
-            console.log(nameInput.val());
+            console.log("nameInput: ", ipInfo.country_code);
 
             if (value === "") {
                 nameInput.removeClass("success");
@@ -50,6 +47,24 @@ $(document).ready(function () {
             }
         });
 
- */
+        lasrnameInput.on('change blur', function() {
+            const value = lastnameInput.val();
+
+            if (value === "") {
+                lastnameInput.removeClass("success");
+                lastnameInput.removeClass("error");
+            } else if (/^[a-zA-Z\W]+$/.test(value)) {
+                lastnameInput.addClass("success");
+                lastnameInput.removeClass("error");
+            } else if (/^[0-9]+$/.test(value)) {
+                lastnameInput.addClass("error");
+                lastnameInput.removeClass("success");
+            } else {
+                lastnameInput.addClass("success");
+                lastnameInput.removeClass("error");
+            }
+        });
+
+
 });
 
