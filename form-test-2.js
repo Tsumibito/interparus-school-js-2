@@ -1,14 +1,10 @@
 const nameInput = $('[ip-name]');
 const phoneInput = $('#phone');
-
-
-
-const ipInfoResp = $.getJSON( "https://ipapi.co/json/", function( json ) {
-    return Promise(json)
-});
-
-
-
+const ipInfoResp = async function fetchIpapiJSON() {
+    const response = await fetch('https://ipapi.co/json/');
+    const ipapi = await response.json();
+    return ipapi;
+}
 
 $(document).ready(function () {
 
