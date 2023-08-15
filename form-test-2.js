@@ -22,19 +22,19 @@ const ipInfoRespCC = fetch("https://ipapi.co/json/")
         return data;
     });
 
+window.intlTelInput(phoneInput, {
+    initialCountry: "auto",
+    geoIpLookup: callback => {
+        fetch("https://ipapi.co/json")
+            .then(res => res.json())
+            .then(data =>  callback(data.country_code))
+            .catch(() => callback("us"));
+    },
+    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js" // just for formatting/placeholders etc
+});
 
 $(document).ready(function () {
 
-    window.intlTelInput(phoneInput, {
-        initialCountry: "auto",
-        geoIpLookup: callback => {
-            fetch("https://ipapi.co/json")
-                .then(res => res.json())
-                .then(data =>  callback(data.country_code))
-                .catch(() => callback("us"));
-        },
-        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js" // just for formatting/placeholders etc
-    });
 
     console.log('In doc: ', test);
 
