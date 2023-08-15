@@ -27,7 +27,7 @@ $(document).ready(function () {
     });
 
     ipInfoResp.resolve().then(() => {
-        phoneInput.initialCountry = ipInfoResp.country_code;
+        phoneInput.selectCountry(this.country_code);
     });
 
 
