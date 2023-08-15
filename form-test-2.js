@@ -29,7 +29,7 @@ const ipInfoResp = async () => {
 };
 
 $(document).ready(function () {
-    var a = ipInfoResp;
+
 
     phoneInput.intlTelInput ({
         autoHideDialCode: true,
@@ -39,6 +39,7 @@ $(document).ready(function () {
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
     });
 
+    var a = ipInfoResp;
 
 
 
