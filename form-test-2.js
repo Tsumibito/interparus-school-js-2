@@ -27,10 +27,10 @@ window.intlTelInput(phoneInput, {
     geoIpLookup: callback => {
         fetch("https://ipapi.co/json")
             .then(res => res.json())
-            .then(data =>  callback(data.country_code))
+            .then(data => callback(data.country_code))
             .catch(() => callback("us"));
     },
-    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js" // just for formatting/placeholders etc
+    utilsScript: "/intl-tel-input/js/utils.js?1690975972744" // just for formatting/placeholders etc
 });
 
 $(document).ready(function () {
