@@ -26,7 +26,6 @@ $(document).ready(function () {
                 .then(data => {
                     callback(data.country_code)
                     ipInfo = data
-                    console.log(ipInfo);
                 })
                 .catch(() => callback("ca"));
         },
