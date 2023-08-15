@@ -102,7 +102,7 @@ $(document).ready(function () {
                 phoneInput.addClass("error");
                 phoneInput.removeClass("success");
                 PhoneValidationResult = false;
-            } else if (!/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/.test(value)) {
+            } else if (!/^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/.test(value)) {
                 phoneInput.addClass("error");
                 phoneInput.removeClass("success");
                 PhoneValidationResult = false;
