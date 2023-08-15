@@ -14,9 +14,13 @@ $(document).ready(function () {
     phoneInput.intlTelInput({
         initialCountry: "auto",
         formatOnDisplay:true,
-        geoIpLookup: null,
+        nationalMode: false,
         showFlags:false,
-        preferredCountries: ["fr","de","ua","pl" ],
+        preferredCountries: ["de","fr","ua" ],
+        responsiveDropdown: false,
+        geoIpLookup: function(){
+            return "US"
+        },
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
     });
 
