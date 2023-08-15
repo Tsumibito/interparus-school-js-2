@@ -19,6 +19,7 @@ $(document).ready(function () {
 
 
 
+
     /*
         nameInput.on('change blur', function() {
             const value = nameInput.val();
