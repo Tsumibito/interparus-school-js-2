@@ -81,7 +81,7 @@ $(document).ready(function () {
             const value = emailInput.val();
 
             if (value === "") {
-                emailInput.removeClass("error");
+                emailInput.addClass("error");
                 emailInput.removeClass("success");
                 EmailValidationResult = false;
             } else if (!/^[^!#$%&~]*[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
@@ -94,6 +94,23 @@ $(document).ready(function () {
                 EmailValidationResult = true;
             }
         });
-        
+
+        phoneInput.on('change blur', function() {
+            const value = phoneInput.val();
+
+            if (value === "") {
+                phoneInput.addClass("error");
+                phoneInput.removeClass("success");
+                PhoneValidationResult = false;
+            } else if (!/\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/.test(value)) {
+                phoneInput.addClass("error");
+                phoneInput.removeClass("success");
+                PhoneValidationResult = false;
+            } else {
+                phoneInput.addClass("success");
+                phoneInput.removeClass("error");
+                PhoneValidationResult = true;
+            }
+        });
 });
 
