@@ -16,7 +16,7 @@ console.log(ipInfoResp);
 const ipInfoRespCC = fetch("https://ipapi.co/json/")
     .then((response) => response.json())
     .then((country_code) => {
-        return ucountry_code;
+        return country_code;
     });
 
 
