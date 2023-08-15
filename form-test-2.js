@@ -32,7 +32,6 @@ $(document).ready(function () {
                 .then(res => res.json())
                 .then(data => {
                     callback(data.country_code);
-                    test = data;
                 })
                 .catch(() => callback("us"));
         },
