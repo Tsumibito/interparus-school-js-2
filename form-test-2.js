@@ -20,10 +20,14 @@ const ipInfoRespCC = fetch("https://ipapi.co/json/")
         return data.country_code;
     });
 
+const ipInfoResp = async () => {
+    const a = await ipInfoRespCC;
+    console.log(a);
+};
 
 $(document).ready(function () {
 
-    console.log('in document: ', ipInfoRespCC.then(data));
+    console.log('in document: ', ipInfoResp);
 
 
 
@@ -32,7 +36,7 @@ $(document).ready(function () {
         separateDialCode: true,
         nationalMode: true,
         initialCountry: "auto",
-        geoIpLookup: ipInfoRespCC,
+        geoIpLookup: ipInfoResp,
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
     });
 
