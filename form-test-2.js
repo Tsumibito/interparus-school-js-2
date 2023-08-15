@@ -1,11 +1,13 @@
 //const nameInput = $('[ip-name]');
 const phoneInput = $('#phone');
+var obj;
 
 const ipInfoResp = fetch("https://ipapi.co/json/")
     .then((response) => response.json())
     .then((data) => {
-        console.log('In func: ', data);
-        return data;
+        obj = data;
+        console.log('In func: ', obj);
+        return obj;
     });
 
 
@@ -18,8 +20,8 @@ $(document).ready(function () {
         showFlags:false,
         preferredCountries: ["de","fr","ua" ],
         responsiveDropdown: false,
-        geoIpLookup: async function(cb){
-            cb(await ipInfoResp.country_code);
+        geoIpLookup: function(cb){
+            cb(obj);
         },
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
     });
