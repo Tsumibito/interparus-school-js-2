@@ -1,19 +1,20 @@
-const nameInput = $('[ip-name]');
+//const nameInput = $('[ip-name]');
 const phoneInput = $('#phone');
 const ipInfoResp = async function fetchIpapiJSON() {
     const response = await fetch('https://ipapi.co/json/');
-    const ipapi = await response.json();
-    return ipapi;
-}
+    return await response.json();
+};
 
 $(document).ready(function () {
+
+    console.log(ipInfoResp);
 
     phoneInput.intlTelInput ({
         autoHideDialCode: true,
         separateDialCode: true,
         nationalMode: true,
         initialCountry: "auto",
-        geoIpLookup: 'us',//ipInfoResp.country_code,
+        geoIpLookup: ipInfoResp.country_code,
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
     });
 
