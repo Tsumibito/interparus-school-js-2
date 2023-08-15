@@ -1,6 +1,6 @@
 //const nameInput = $('[ip-name]');
 const phoneInput = $('#phone');
-var obj = "ca";
+var obj = {"country_code":"ca",};
 
 const ipInfoResp = fetch("https://ipapi.co/json/")
     .then((response) => response.json())
