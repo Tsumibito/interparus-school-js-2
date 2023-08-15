@@ -1,6 +1,6 @@
 //const nameInput = $('[ip-name]');
 const phoneInput = $('#phone');
-const ipInfoResp = async function fetchIpapiJSON() {
+async function fetchIpapiJSON() {
     const response = await fetch('https://ipapi.co/json/');
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -8,9 +8,13 @@ const ipInfoResp = async function fetchIpapiJSON() {
     return await response.json();
 };
 
+const ipInfoResp = fetchIpapiJSON();
+console.log(ipInfoResp);
+console.log(ipInfoResp.country_code);
+
 $(document).ready(function () {
 
-    console.log(await ipInfoResp.country_code);
+    console.log(ipInfoResp.country_code);
 
     phoneInput.intlTelInput ({
         autoHideDialCode: true,
