@@ -14,9 +14,9 @@ console.log(ipInfoResp);
 
 $(document).ready(function () {
 
-    ipInfoResp.then(console.log);
+    ipInfoResp.then(console.log(ipInfoResp.country_code));
 
-    console.log(ipInfoResp.then());
+
 
     phoneInput.intlTelInput ({
         autoHideDialCode: true,
