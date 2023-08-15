@@ -113,7 +113,7 @@ $(document).ready(function () {
             PhoneValidationResult = true;
         }
     });
-    isValidNumber()
+
 
         /*
         phoneInput.on('change blur', function() {
