@@ -1,6 +1,6 @@
 //const nameInput = $('[ip-name]');
 const phoneInput = $('#phone');
-var obj;
+var obj = "ca";
 
 const ipInfoResp = fetch("https://ipapi.co/json/")
     .then((response) => response.json())
