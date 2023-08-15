@@ -26,9 +26,7 @@ $(document).ready(function () {
         utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
     });
 
-    ipInfoResp.resolve().then(() => {
-        phoneInput.selectCountry(this.country_code);
-    });
+    ipInfoResp.resolve().then((phoneInput.selectCountry(this.country_code)));
 
 
 
