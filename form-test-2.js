@@ -245,6 +245,9 @@ $(document).ready(() => {
             $("#phone-error-msg").addClass("hide");
             PhoneValidationResult = true;
             activateButtonIfAllValid();
+            let fullNumber = phoneInput.intlTelInput("getNumber");
+            fullPhoneInput.val(fullNumber);
+            console.log("Full phone number:", fullPhoneInput.val());
         }
     });
 
