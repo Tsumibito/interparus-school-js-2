@@ -257,7 +257,3 @@ $(document).ready(() => {
     });
 });
 
-
-chrome.runtime.onMessage.addEventListener((request, sender, sendResponse) => {
-    return true; // Error message says you already return true
-});
