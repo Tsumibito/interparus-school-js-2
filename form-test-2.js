@@ -10,13 +10,12 @@ const nameInput = $('[ip-name]'),
       formErrorMsg = $('#form-error-msg'),
       formValidMsg = $('#form-valid-msg'),
       BrandInterest = "Interparus School",
+      ProductCatalogue = {
+            "/atlantique": "Atlantique",
+            "/": "School Main",
+            "/inshore-skipper": "Inshore Skipper"
+      },
       ProductInterest = GetProductInterest(pageUrl);
-
-const ProductCatalogue = {
-        "/atlantique": "Atlantique",
-        "/": "School Main",
-        "/inshore-skipper": "Inshore Skipper"
-       };
 
 const thankYouPageUrl = (function() {
             let domainPattern = /(https?:\/\/[^\/]*interparus-school\.com)/;
@@ -49,11 +48,8 @@ function GetIpInfo(ipInfo, paramName) {
 }
 
 function GetProductInterest(pageUrl) {
-    // Извлекаем путь из URL
     let path = new URL(pageUrl).pathname;
     console.log(path)
-
-    // Возвращаем соответствующий продукт или "None", если продукт не найден
     return ProductCatalogue[path] || 'None';
 }
 var SubmitForm = function() {
