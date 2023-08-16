@@ -87,12 +87,14 @@ function SubmitForm() {
         formData.customorder_brand_interest = BrandInterest;
         formData.customorder_product_interest = ProductInterest;
 
+        const queryString = Object.keys(formData).map(key => key + '=' + encodeURIComponent(formData[key])).join('&');
+
         fetch(apiUrl, {
             method: 'POST',
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
             },
-            body: JSON.stringify(formData)
+            body: queryString
         })
             .then(response => response.json())
             .then(data => {
