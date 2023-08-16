@@ -2,7 +2,6 @@ const nameInput = $('[ip-name]'),
     lastnameInput = $('[ip-lastname]'),
     emailInput = $('[ip-email]'),
     phoneInput = $('#phone'),
-    fullPhoneInput = $('input[name="full_phone"]'),
     pageUrl = $(location).attr('href'),
     cleanUrl = pageUrl.split('#')[0].split('?')[0],
     pageForm = $('#ob_form'),
@@ -55,7 +54,8 @@ function SubmitForm() {
     const apiUrl = "https://hooks.zapier.com/hooks/catch/12700623/bazia5v/",
         date = new Date();
 
-    const formData = {};
+    const formData = {},
+          fullPhoneInput = $('input[name="full_phone"]');
 
     if (NameValidationResult && LastNameValidationResult && EmailValidationResult && PhoneValidationResult) {
         formData.ordercode = date.valueOf();
@@ -245,10 +245,15 @@ $(document).ready(() => {
             $("#phone-error-msg").addClass("hide");
             PhoneValidationResult = true;
             activateButtonIfAllValid();
-            let fullNumber = phoneInput.intlTelInput("getNumber");
-            fullPhoneInput.val(fullNumber);
-            console.log("Full phone number:", fullPhoneInput.val());
         }
+    });
+
+    phoneInput.on("blur countrychange", function() {
+        const fullPhoneInput = $('input[name="full_phone"]');
+
+        let fullNumber = phoneInput.intlTelInput("getNumber");
+        fullPhoneInput.val(fullNumber);
+        console.log("Updated full phone number:", fullPhoneInput.val());
     });
 
     formButton.click(e => {
