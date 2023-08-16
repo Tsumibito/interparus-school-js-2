@@ -110,7 +110,7 @@ function SubmitForm() {
     } else {
         console.log('Form Submission Error');
         formButton.attr('disabled', true);
-        formErrorMsg.addClass('show');
+        formErrorMsg.removeClass('hide');
     }
 }
 
@@ -150,19 +150,23 @@ $(document).ready(() => {
         if (value === "") {
             nameInput.removeClass("success");
             nameInput.addClass("error");
+            $("#name-error-msg").removeClass("hide");
             NameValidationResult = false;
         } else if (/^[a-zA-Z\W]+$/.test(value)) {
             nameInput.addClass("success");
             nameInput.removeClass("error");
+            $("#name-error-msg").addClass("hide");
             NameValidationResult = true;
             activateButtonIfAllValid();
         } else if (/^[0-9]+$/.test(value)) {
             nameInput.addClass("error");
             nameInput.removeClass("success");
+            $("#name-error-msg").removeClass("hide");
             NameValidationResult = false;
         } else {
             nameInput.addClass("success");
             nameInput.removeClass("error");
+            $("#name-error-msg").addClass("hide");
             NameValidationResult = true;
             activateButtonIfAllValid();
         }
@@ -174,19 +178,23 @@ $(document).ready(() => {
         if (value === "") {
             lastnameInput.removeClass("success");
             lastnameInput.addClass("error");
+            $("#lastname-error-msg").removeClass("hide");
             LastNameValidationResult = false;
         } else if (/^[a-zA-Z\W]+$/.test(value)) {
             lastnameInput.addClass("success");
             lastnameInput.removeClass("error");
+            $("#lastname-error-msg").addClass("hide");
             LastNameValidationResult = true;
             activateButtonIfAllValid();
         } else if (/^[0-9]+$/.test(value)) {
             lastnameInput.addClass("error");
             lastnameInput.removeClass("success");
+            $("#lastname-error-msg").removeClass("hide");
             LastNameValidationResult = false;
         } else {
             lastnameInput.addClass("success");
             lastnameInput.removeClass("error");
+            $("#lastname-error-msg").addClass("hide");
             LastNameValidationResult = true;
             activateButtonIfAllValid();
         }
@@ -198,14 +206,17 @@ $(document).ready(() => {
         if (value === "") {
             emailInput.addClass("error");
             emailInput.removeClass("success");
+            $("#email-error-msg").removeClass("hide");
             EmailValidationResult = false;
         } else if (!/^[^!#$%&~]*[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
             emailInput.addClass("error");
             emailInput.removeClass("success");
+            $("#email-error-msg").removeClass("hide");
             EmailValidationResult = false;
         } else {
             emailInput.addClass("success");
             emailInput.removeClass("error");
+            $("#email-error-msg").addClass("hide");
             EmailValidationResult = true;
             activateButtonIfAllValid();
         }
@@ -218,15 +229,18 @@ $(document).ready(() => {
             phoneInput.addClass("error");
             phoneInput.removeClass("success");
             PhoneValidationResult = false;
+            $("#phone-error-msg").removeClass("hide");
             activateButtonIfAllValid();
         } else if (!/^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/.test(value)) {
             phoneInput.addClass("error");
             phoneInput.removeClass("success");
+            $("#phone-error-msg").removeClass("hide");
             PhoneValidationResult = false;
             activateButtonIfAllValid();
         } else {
             phoneInput.addClass("success");
             phoneInput.removeClass("error");
+            $("#phone-error-msg").addClass("hide");
             PhoneValidationResult = true;
             activateButtonIfAllValid();
         }
