@@ -9,22 +9,27 @@ const nameInput = $('[ip-name]'),
     formButton = $('#ob_button'),
     formErrorMsg = $('#form-error-msg'),
     formValidMsg = $('#form-valid-msg'),
-    BrandInterest = "Interparus School",
-    ProductCatalogue = {
+    BrandInterest = "Interparus School";
+function GetProductInterest(pageUrl) {
+    const path = new URL(pageUrl).pathname;
+    return ProductCatalogue[path] || 'None';
+}
+
+const ProductCatalogue = {
         "/atlantique": "Atlantique",
         "/": "School Main",
         "/inshore-skipper": "Inshore Skipper"
-    };
-
-const thankYouPageUrl = (() => {
+    },
+    ProductInterest = GetProductInterest(pageUrl),
+    thankYouPageUrl = (() => {
     const domainPattern = /(https?:\/\/[^\/]*interparus-school\.com)/;
     const match = pageUrl.match(domainPattern);
     return match ? `${match[0]}/thank-you` : 'None';
 })();
 
 const pageLang = pageUrl.includes('www.interparus-school.com') ? 'RU' :
-        pageUrl.includes('ua.interparus-school.com') ? 'UA' :
-            pageUrl.includes('en.interparus-school.com') ? 'EN' : 'None',
+                        pageUrl.includes('ua.interparus-school.com') ? 'UA' :
+                        pageUrl.includes('en.interparus-school.com') ? 'EN' : 'None',
     pageAddInfo = (() => {
         const domainPattern = /(www\.interparus-school\.com|ua\.interparus-school\.com|en\.interparus-school\.com)/;
         const match = pageUrl.match(domainPattern);
@@ -44,11 +49,6 @@ function UrlParams(pageUrl, paramName) {
 
 function GetIpInfo(ipInfo, paramName) {
     return ipInfo.hasOwnProperty(paramName) ? ipInfo[paramName] : 'None';
-}
-
-function GetProductInterest(pageUrl) {
-    const path = new URL(pageUrl).pathname;
-    return ProductCatalogue[path] || 'None';
 }
 
 function SubmitForm() {
