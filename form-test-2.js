@@ -84,10 +84,8 @@ function GetIpInfo(ipInfo, paramName) {
 }
 
 function SubmitForm() {
-    const apiUrl = "https://hooks.zapier.com/hooks/catch/12700623/bazia5v/",
-        date = new Date();
-
-    const formData = {},
+    const date = new Date(),
+          formData = {},
           fullPhoneInput = $('input[name="full_phone"]');
 
     if (NameValidationResult && LastNameValidationResult && EmailValidationResult && PhoneValidationResult) {
@@ -122,26 +120,8 @@ function SubmitForm() {
 
         const queryString = Object.keys(formData).map(key => key + '=' + encodeURIComponent(formData[key])).join('&');
 
-        fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
-            },
-            body: queryString
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-            })
-            .catch(error => {
-                console.error("Ошибка:", error);
-            });
+        $('#json-text').val(queryString);
 
-        formButton.attr('go', true);
-
-        setTimeout(() => {
-            window.location.replace(thankYouPageUrl);
-        }, 1000);
     } else {
         console.log('Form Submission Error');
         formButton.attr('disabled', true);
@@ -290,13 +270,9 @@ $(document).ready(() => {
     });
 
     formButton.click(e => {
-        e.preventDefault();
         SubmitForm();
     });
 
-    pageForm.submit(e => {
-        e.preventDefault();
-        SubmitForm();
-    });
+
 });
 
