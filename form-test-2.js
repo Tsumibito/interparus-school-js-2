@@ -270,7 +270,20 @@ $(document).ready(() => {
     });
 
     formButton.click(e => {
+        // Вызываем функцию SubmitForm
         SubmitForm();
+
+        // Проверяем содержимое скрытого поля json-text
+        const jsonTextValue = $('#json-text').val();
+        if (jsonTextValue && jsonTextValue !== 'None') {
+            // Если значение есть и оно не равно 'None', выполняем стандартное поведение кнопки
+            return true;
+        } else {
+            // Если значение отсутствует или равно 'None', блокируем кнопку и показываем сообщение об ошибке
+            formButton.attr('disabled', true);
+            formErrorMsg.removeClass('hide');
+            e.preventDefault(); // Предотвращаем стандартное поведение кнопки
+        }
     });
 
 
