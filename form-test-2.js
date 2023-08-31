@@ -1,3 +1,7 @@
+if (document.body.classList.contains("no-form-test")) {
+    return;
+}
+
 const nameInput = $('[ip-name]'),
     lastnameInput = $('[ip-lastname]'),
     emailInput = $('[ip-email]'),
