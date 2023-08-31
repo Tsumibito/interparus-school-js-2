@@ -1,7 +1,7 @@
 const nameInput = $('[ip-name]'),
     lastnameInput = $('[ip-lastname]'),
     emailInput = $('[ip-email]'),
-    phoneInput = $('#phone'),
+    phoneInput = $('[ip-phone]'),
     pageUrl = $(location).attr('href'),
     cleanUrl = pageUrl.split('#')[0].split('?')[0],
     pageForm = $('#ob_form'),
