@@ -120,7 +120,7 @@ function SubmitForm() {
 
         const queryString = Object.keys(formData).map(key => key + '=' + encodeURIComponent(formData[key])).join('&');
 
-        $('#json-text').val(queryString);
+        $('#json-text-2').val(queryString);
 
     } else {
         console.log('Form Submission Error');
@@ -272,7 +272,7 @@ $(document).ready(() => {
     formButton.click(e => {
         SubmitForm();
 
-        const jsonTextValue = $('#json-text').val();
+        const jsonTextValue = $('#json-text-2').val();
         console.log(jsonTextValue);
 
         if (jsonTextValue && jsonTextValue !== 'None') {
