@@ -4,7 +4,7 @@ const nameInput = $('[ip-name]'),
     phoneInput = $('[ip-phone]'),
     pageUrl = $(location).attr('href'),
     cleanUrl = pageUrl.split('#')[0].split('?')[0],
-    pageForm = $('#ob_form'),
+    pageForm = $('#ob_form_main'),
     formButton = $('#ob_button'),
     formErrorMsg = $('#form-error-msg'),
     formValidMsg = $('#form-valid-msg'),
@@ -120,7 +120,8 @@ function SubmitForm() {
 
         const queryString = Object.keys(formData).map(key => key + '=' + encodeURIComponent(formData[key])).join('&');
 
-        $('#json-text-2').val(queryString);
+        $('#json-text').val(queryString);
+        console.log('queryString: ', queryString);
 
     } else {
         console.log('Form Submission Error');
@@ -272,7 +273,7 @@ $(document).ready(() => {
     formButton.click(e => {
         SubmitForm();
 
-        const jsonTextValue = $('#json-text-2').val();
+        const jsonTextValue = $('#json-text').val();
         console.log(jsonTextValue);
 
         if (jsonTextValue && jsonTextValue !== 'None') {
