@@ -15,7 +15,7 @@ function GetProductInterest(pageUrl) {
     return ProductCatalogue[path] || 'None';
 };
 
-const getThankYouPageUrl = () => {
+const getThankYouPageUrl = (cleanUrl) => {
     const domainPattern = /(https?:\/\/[^\/]*interparus-school\.com)(\/[a-z]{2})?/;
     const match = cleanUrl.match(domainPattern);
     
@@ -36,8 +36,8 @@ const ProductCatalogue = {
         "/inshore-skipper-power": "Inshore Skipper Sail",
         "/offshore-skipper-power": "Offshore Skipper Power"
     },
-    ProductInterest = GetProductInterest(pageUrl),
-    thankYouPageUrl = getThankYouPageUrl();
+    ProductInterest = GetProductInterest(cleanUrl),
+    thankYouPageUrl = getThankYouPageUrl(cleanUrl);
 
 const pageLang = pageUrl.includes('interparus-school.com/ua') ? 'UA':
                         pageUrl.includes('interparus-school.com/en') ? 'EN' :
