@@ -17,7 +17,11 @@ function GetProductInterest(pageUrl) {
 const ProductCatalogue = {
         "/atlantique": "Atlantique",
         "/": "School Main",
-        "/inshore-skipper": "Inshore Skipper"
+        "/inshore-skipper-sail": "Inshore Skipper Sail",
+        "/offshore-skipper-sail": "Offshore Skipper Sail",
+        "/master-of-yacht-sail": "Master of Yacht Sail", 
+        "/inshore-skipper-power": "Inshore Skipper Sail",
+        "/offshore-skipper-power": "Offshore Skipper Power"
     },
     ProductInterest = GetProductInterest(pageUrl),
     thankYouPageUrl = (() => {
@@ -26,11 +30,11 @@ const ProductCatalogue = {
     return match ? `${match[0]}/thank-you` : 'None';
 })();
 
-const pageLang = pageUrl.includes('www.interparus-school.com') ? 'RU' :
-                        pageUrl.includes('ua.interparus-school.com') ? 'UA' :
-                        pageUrl.includes('en.interparus-school.com') ? 'EN' : 'None',
+const pageLang = pageUrl.includes('interparus-school.com/ua') ? 'UA':
+                        pageUrl.includes('interparus-school.com/en') ? 'EN' :
+                         'RU',
     pageAddInfo = (() => {
-        const domainPattern = /(www\.interparus-school\.com|ua\.interparus-school\.com|en\.interparus-school\.com)/;
+        const domainPattern = /(www\.interparus-school\.com/;
         const match = pageUrl.match(domainPattern);
         return match ? match[0] : 'None';
     })();
