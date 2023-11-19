@@ -20,7 +20,7 @@ const getThankYouPageUrl = (cleanUrl) => {
     const match = cleanUrl.match(domainPattern);
 
     if (match) {
-        const languageSegment = match[3] || ''; // Language segment is the third capturing group
+        const languageSegment = match[3] || ''; 
         return languageSegment ? `${match[1]}/${languageSegment}/thank-you` : `${match[1]}/thank-you`;
     } else {
         return 'None';
