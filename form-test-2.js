@@ -34,7 +34,7 @@ const pageLang = pageUrl.includes('interparus-school.com/ua') ? 'UA':
                         pageUrl.includes('interparus-school.com/en') ? 'EN' :
                          'RU',
     pageAddInfo = (() => {
-        const domainPattern = /(www\.interparus-school\.com/;
+        const domainPattern = /(www\.interparus-school\.com)/;
         const match = pageUrl.match(domainPattern);
         return match ? match[0] : 'None';
     })();
