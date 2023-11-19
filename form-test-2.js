@@ -16,12 +16,12 @@ function GetProductInterest(pageUrl) {
 };
 
 const getThankYouPageUrl = (cleanUrl) => {
-    const domainPattern = /(https?:\/\/[^\/]*interparus-school\.com)(\/[a-z]{2})?/;
+    const domainPattern = /(https?:\/\/[^\/]*interparus-school\.com)(\/(en|ua))?/;
     const match = cleanUrl.match(domainPattern);
-    
+
     if (match) {
-        const languageSegment = match[2] || ''; // Language segment is optional
-        return `${match[1]}${languageSegment}/thank-you`;
+        const languageSegment = match[3] || ''; // Language segment is the third capturing group
+        return languageSegment ? `${match[1]}/${languageSegment}/thank-you` : `${match[1]}/thank-you`;
     } else {
         return 'None';
     }
