@@ -284,6 +284,7 @@ $(document).ready(() => {
     });
 
     formButton.click(e => {
+        $('#ob_form').attr('redirect', thankYouPageUrl);
         SubmitForm();
 
         const jsonTextValue = $('#json-text').val();
