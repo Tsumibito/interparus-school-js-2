@@ -9,10 +9,23 @@ const nameInput = $('[ip-name]'),
     formErrorMsg = $('#form-error-msg'),
     formValidMsg = $('#form-valid-msg'),
     BrandInterest = "Interparus School";
+
 function GetProductInterest(pageUrl) {
     const path = new URL(pageUrl).pathname;
     return ProductCatalogue[path] || 'None';
-}
+};
+
+const getThankYouPageUrl = () => {
+    const domainPattern = /(https?:\/\/[^\/]*interparus-school\.com)(\/[a-z]{2})?/;
+    const match = cleanUrl.match(domainPattern);
+    
+    if (match) {
+        const languageSegment = match[2] || ''; // Language segment is optional
+        return `${match[1]}${languageSegment}/thank-you`;
+    } else {
+        return 'None';
+    }
+};
 
 const ProductCatalogue = {
         "/atlantique": "Atlantique",
@@ -24,17 +37,6 @@ const ProductCatalogue = {
         "/offshore-skipper-power": "Offshore Skipper Power"
     },
     ProductInterest = GetProductInterest(pageUrl),
-    const getThankYouPageUrl = () => {
-    const domainPattern = /(https?:\/\/[^\/]*interparus-school\.com)(\/[a-z]{2})?/;
-    const match = window.location.href.match(domainPattern);
-    
-    if (match) {
-        const languageSegment = match[2] || ''; // Language segment is optional
-        return `${match[1]}${languageSegment}/thank-you`;
-    } else {
-        return 'https://www.interparus-school.com/en/thank-you';
-    }
-    },
     thankYouPageUrl = getThankYouPageUrl();
 
 const pageLang = pageUrl.includes('interparus-school.com/ua') ? 'UA':
