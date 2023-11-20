@@ -144,8 +144,7 @@ function SubmitForm() {
 }
 
 $(document).ready(() => {
-
-    $('#ob_form').attr('redirect', thankYouPageUrl);
+    $('#ob_form').attr('redirect',thankYouPageUrl).attr('data-redirect',thankYouPageUrl);
     
     //Initialize intlTelInput
     phoneInput.intlTelInput({
