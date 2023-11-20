@@ -15,17 +15,6 @@ function GetProductInterest(pageUrl) {
     return ProductCatalogue[path] || 'None';
 };
 
-const getThankYouPageUrl = (cleanUrl) => {
-    const domainPattern = /(https?:\/\/[^\/]*interparus-school\.com)(\/(en|ua))?/;
-    const match = cleanUrl.match(domainPattern);
-
-    if (match) {
-        const languageSegment = match[3] || ''; 
-        return languageSegment ? `${match[1]}/${languageSegment}/thank-you` : `${match[1]}/thank-you`;
-    } else {
-        return 'None';
-    }
-};
 
 const ProductCatalogue = {
         "/atlantique": "Atlantique",
@@ -36,8 +25,7 @@ const ProductCatalogue = {
         "/inshore-skipper-power": "Inshore Skipper Sail",
         "/offshore-skipper-power": "Offshore Skipper Power"
     },
-    ProductInterest = GetProductInterest(cleanUrl),
-    thankYouPageUrl = getThankYouPageUrl(cleanUrl);
+    ProductInterest = GetProductInterest(cleanUrl);
 
 const pageLang = pageUrl.includes('interparus-school.com/ua') ? 'UA':
                         pageUrl.includes('interparus-school.com/en') ? 'EN' :
@@ -143,8 +131,7 @@ function SubmitForm() {
     }
 }
 
-$(document).ready(() => {
-    $('#ob_form').attr('redirect',thankYouPageUrl).attr('data-redirect',thankYouPageUrl);
+$(document).ready(() => {  
     
     //Initialize intlTelInput
     phoneInput.intlTelInput({
