@@ -4,11 +4,15 @@ const nameInput = $('[ip-name]'),
     phoneInput = $('[ip-phone]'),
     pageUrl = $(location).attr('href'),
     cleanUrl = pageUrl.split('#')[0].split('?')[0],
-    pageForm = $('#ob_form_main'),
-    formButton = $('#ob_button'),
+    pageForm = $('[ob_form_main]'),
+    formButton = $('[ob_button]'),
     formErrorMsg = $('#form-error-msg'),
     formValidMsg = $('#form-valid-msg'),
     BrandInterest = "Interparus School";
+
+console.log(pageForm);
+console.log(formButton);
+
 
 function GetProductInterest(pageUrl) {
     const path = new URL(pageUrl).pathname;
