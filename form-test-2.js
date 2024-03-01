@@ -10,7 +10,6 @@ const nameInput = $('[ip-name]'),
     formValidMsg = $('#form-valid-msg'),
     BrandInterest = "Interparus School";
 
-
 const pageUrlT = $(location).attr('href'),
       cleanUrlT = pageUrlT.split('#')[0].split('?')[0],
       getThankYouPageUrl = (cleanUrlT) => {
@@ -24,7 +23,7 @@ const pageUrlT = $(location).attr('href'),
               return 'None';
           }
       },
-	 thankYouPageUrl = getThankYouPageUrl(cleanUrlT);
+     thankYouPageUrl = getThankYouPageUrl(cleanUrlT);
 
 
 function GetProductInterest(pageUrl) {
@@ -145,9 +144,29 @@ function SubmitForm() {
 
         const queryString = Object.keys(formData).map(key => key + '=' + encodeURIComponent(formData[key])).join('&');
 
-        console.log(queryString);
 
-        $('[json-text]').val(queryString);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', "https://hooks.zapier.com/hooks/catch/12700623/bazia5v/", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+            xhr.send(JSON.stringify(queryString));
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    console.log(xhr.status);
+                }
+            }
+
+
+            formValidMsg.removeClass('hide');
+
+            formbutton.attr('go', true);
+
+            setTimeout(function (){   
+                window.location.replace(thankYouPageUrl);
+                }, 1000);
+
 
     } else {
         console.log('Form Submission Error');
