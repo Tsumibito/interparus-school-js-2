@@ -10,8 +10,21 @@ const nameInput = $('[ip-name]'),
     formValidMsg = $('#form-valid-msg'),
     BrandInterest = "Interparus School";
 
-console.log(pageForm);
-console.log(formButton);
+
+const pageUrlT = $(location).attr('href'),
+      cleanUrlT = pageUrlT.split('#')[0].split('?')[0],
+      getThankYouPageUrl = (cleanUrlT) => {
+          const domainPattern = /(https?:\/\/[^\/]*interparus-school\.com)(\/(en|ua))?/;
+          const match = cleanUrlT.match(domainPattern);
+
+          if (match) {
+              const languageSegment = match[3] || ''; 
+              return languageSegment ? `${match[1]}/${languageSegment}/thank-you` : `${match[1]}/thank-you`;
+          } else {
+              return 'None';
+          }
+      },
+	 thankYouPageUrl = getThankYouPageUrl(cleanUrlT);
 
 
 function GetProductInterest(pageUrl) {
