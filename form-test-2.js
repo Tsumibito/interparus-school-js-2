@@ -161,7 +161,7 @@ function SubmitForm() {
 
             formValidMsg.removeClass('hide');
 
-            formbutton.attr('go', true);
+            formButton.attr('go', true);
 
             setTimeout(function (){   
                 window.location.replace(thankYouPageUrl);
@@ -315,11 +315,16 @@ $(document).ready(() => {
 
     });
 
-    formButton.click(e => {    
-        e.preventDefault();    
-        SubmitForm();
+     formButton.click(function(e) {
+      e.preventDefault();
+      SubmitForm();
+     });
 
-    });
+     pageForm.submit(function(e) {
+      e.preventDefault();
+      SubmitForm();
+
+   });
 
 
 });
