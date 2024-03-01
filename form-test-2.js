@@ -285,7 +285,7 @@ $(document).ready(() => {
 
     formButton.click(e => {        
         SubmitForm();
-        const jsonTextValue = $('#json-text').val();
+        const jsonTextValue = $('[json-text]').val();
 
         if (jsonTextValue && jsonTextValue !== 'None') {
             return true;
