@@ -36,6 +36,8 @@ const ProductCatalogue = {
     },
     ProductInterest = GetProductInterest(cleanUrl);
 
+console.log(ProductInterest);
+
 const pageLang = pageUrl.includes('interparus-school.com/ua') ? 'UA':
                         pageUrl.includes('interparus-school.com/en') ? 'EN' :
                          'RU',
@@ -129,6 +131,8 @@ function SubmitForm() {
         formData.customorder_product_interest = ProductInterest;
 
         const queryString = Object.keys(formData).map(key => key + '=' + encodeURIComponent(formData[key])).join('&');
+
+        console.log(queryString);
 
         $('[json-text]').val(queryString);
 
