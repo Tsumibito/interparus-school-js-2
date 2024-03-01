@@ -315,17 +315,10 @@ $(document).ready(() => {
 
     });
 
-    formButton.click(e => {        
+    formButton.click(e => {    
+        e.preventDefault();    
         SubmitForm();
-        const jsonTextValue = $('[json-text]').val();
 
-        if (jsonTextValue && jsonTextValue !== 'None') {
-            return true;
-        } else {
-            formButton.attr('disabled', true);
-            formErrorMsg.removeClass('hide');
-            e.preventDefault();
-        }
     });
 
 
