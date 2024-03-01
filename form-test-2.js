@@ -149,7 +149,7 @@ function SubmitForm() {
             var xhr = new XMLHttpRequest();
             xhr.open('POST', "https://hooks.zapier.com/hooks/catch/12700623/bazia5v/", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-            xhr.send(JSON.stringify(queryString));
+            xhr.send(queryString);
 
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
