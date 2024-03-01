@@ -23,7 +23,12 @@ const ProductCatalogue = {
         "/offshore-skipper-sail": "Offshore Skipper Sail",
         "/master-of-yacht-sail": "Master of Yacht Sail", 
         "/inshore-skipper-power": "Inshore Skipper Sail",
-        "/offshore-skipper-power": "Offshore Skipper Power"
+        "/offshore-skipper-power": "Offshore Skipper Power",
+        "/charter": "Charter",
+        "/gift-certificates": "Gift Certificates",
+        "/mezhdunarodnye-prava-na-yahtu": "Международные права на яхту"
+    
+
     },
     ProductInterest = GetProductInterest(cleanUrl);
 
@@ -121,8 +126,7 @@ function SubmitForm() {
 
         const queryString = Object.keys(formData).map(key => key + '=' + encodeURIComponent(formData[key])).join('&');
 
-        $('#json-text').val(queryString);
-        console.log('queryString: ', queryString);
+        $('[json-text]').val(queryString);
 
     } else {
         console.log('Form Submission Error');
@@ -266,18 +270,14 @@ $(document).ready(() => {
 
     phoneInput.on("blur countrychange", function() {
         const fullPhoneInput = $('input[name="full_phone"]');
-
         let fullNumber = phoneInput.intlTelInput("getNumber");
         fullPhoneInput.val(fullNumber);
-        console.log("Updated full phone number:", fullPhoneInput.val());
+
     });
 
-    formButton.click(e => {
-        
+    formButton.click(e => {        
         SubmitForm();
-
         const jsonTextValue = $('#json-text').val();
-        console.log(jsonTextValue);
 
         if (jsonTextValue && jsonTextValue !== 'None') {
             return true;
