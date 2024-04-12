@@ -1,38 +1,38 @@
-$(document).ready(() => {
-    const nameInput = $('[ip-name]'),
-          lastnameInput = $('[ip-lastname]'),
-          emailInput = $('[ip-email]'),
-          phoneInput = $('[ip-phone]'),
-          pageUrl = $(location).attr('href'),
-          cleanUrl = pageUrl.split('#')[0].split('?')[0],
-          pageForm = $('[ob_form_main]'),
-          formButton = $('[ob_button]'),
-          formErrorMsg = $('#form-error-msg'),
-          formValidMsg = $('#form-valid-msg'),
-          BrandInterest = "Interparus School";
+const nameInput = $('[ip-name]'),
+    lastnameInput = $('[ip-lastname]'),
+    emailInput = $('[ip-email]'),
+    phoneInput = $('[ip-phone]'),
+    pageUrl = $(location).attr('href'),
+    cleanUrl = pageUrl.split('#')[0].split('?')[0],
+    pageForm = $('[ob_form_main]'),
+    formButton = $('[ob_button]'),
+    formErrorMsg = $('#form-error-msg'),
+    formValidMsg = $('#form-valid-msg'),
+    BrandInterest = "Interparus School";
 
-    const pageUrlT = pageUrl,
-          cleanUrlT = cleanUrl,
-          thankYouPageUrl = getThankYouPageUrl(cleanUrlT);
+const pageUrlT = $(location).attr('href'),
+      cleanUrlT = pageUrlT.split('#')[0].split('?')[0],
+      getThankYouPageUrl = (cleanUrlT) => {
+          const domainPattern = /(https?:\/\/[^\/]*interparus-school\.com)(\/(en|ua))?/;
+          const match = cleanUrlT.match(domainPattern);
 
-    let ipInfo,
-        NameValidationResult = false,
-        LastNameValidationResult = false,
-        EmailValidationResult = false,
-        PhoneValidationResult = false;
+          if (match) {
+              const languageSegment = match[3] || ''; 
+              return languageSegment ? `${match[1]}/${languageSegment}/thank-you` : `${match[1]}/thank-you`;
+          } else {
+              return 'None';
+          }
+      },
+     thankYouPageUrl = getThankYouPageUrl(cleanUrlT);
 
-    function getThankYouPageUrl(cleanUrl) {
-        const domainPattern = /(https?:\/\/[^\/]*interparus-school\.com)(\/(en|ua))?/;
-        const match = cleanUrl.match(domainPattern);
-        if (match) {
-            const languageSegment = match[3] || ''; 
-            return languageSegment ? `${match[1]}/${languageSegment}/thank-you` : `${match[1]}/thank-you`;
-        } else {
-            return 'None';
-        }
-    }
 
-    const ProductCatalogue = {
+function GetProductInterest(pageUrl) {
+    const path = new URL(pageUrl).pathname;
+    return ProductCatalogue[path] || 'None';
+};
+
+
+const ProductCatalogue = {
         "/atlantique": "Atlantique",
         "/": "School Main",
         "/inshore-skipper-sail": "Inshore Skipper Sail",
@@ -43,144 +43,181 @@ $(document).ready(() => {
         "/charter": "Charter",
         "/gift-certificates": "Gift Certificates",
         "/mezhdunarodnye-prava-na-yahtu": "Международные права на яхту"
-    };
+    
 
-    function GetProductInterest(pageUrl) {
-        const path = new URL(pageUrl).pathname;
-        return ProductCatalogue[path] || 'None';
-    };
+    },
+    ProductInterest = GetProductInterest(cleanUrl);
 
-    const ProductInterest = GetProductInterest(cleanUrl);
+console.log(ProductInterest);
 
-    const pageLang = pageUrl.includes('interparus-school.com/ua') ? 'UA' :
-                     pageUrl.includes('interparus-school.com/en') ? 'EN' :
-                     'RU';
-    const pageAddInfo = (() => {
+const pageLang = pageUrl.includes('interparus-school.com/ua') ? 'UA':
+                        pageUrl.includes('interparus-school.com/en') ? 'EN' :
+                         'RU',
+    pageAddInfo = (() => {
         const domainPattern = /(www\.interparus-school\.com)/;
         const match = pageUrl.match(domainPattern);
         return match ? match[0] : 'None';
     })();
 
-    function setCookie(name, value, days) {
-        var expires = "";
-        if (days) {
-            var date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            expires = "; expires=" + date.toUTCString();
-        }
-        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+let ipInfo,
+    NameValidationResult = false,
+    LastNameValidationResult = false,
+    EmailValidationResult = false,
+    PhoneValidationResult = false;
+
+function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
     }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
 
-    function getCookie(name) {
-        var nameEQ = name + "=";
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
+function getCookie(name) {
+    const nameEQ = name + "=";
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
     }
+    return null;
+}
 
-    function eraseCookie(name) {   
-        document.cookie = name + '=; Max-Age=-99999999;';  
+function eraseCookie(name) {
+    document.cookie = name + '=; Max-Age=-99999999;';
+}
+
+function UrlParams(pageUrl, paramName) {
+    const params = new URLSearchParams(pageUrl.split('?')[1]);
+
+    if (params.has(paramName)) {
+        const paramValue = params.get(paramName);
+        setCookie(paramName, paramValue, 1); // Устанавливаем куки на 24 часа
+        return paramValue;
+    } else {
+        const cookieValue = getCookie(paramName);
+        return cookieValue ? cookieValue : 'None';
     }
+}
 
-    function UrlParams(pageUrl, paramName) {
-        var params = new URLSearchParams(pageUrl.split('?')[1]);
-        if (params.has(paramName)) {
-            var paramValue = params.get(paramName);
-            setCookie(paramName, paramValue, 1);
-            return paramValue;
-        } else {
-            var cookieValue = getCookie(paramName);
-            return cookieValue ? cookieValue : 'None';
-        }
-    }
+function GetIpInfo(ipInfo, paramName) {
+    return ipInfo.hasOwnProperty(paramName) ? ipInfo[paramName] : 'None';
+}
+
+function SubmitForm() {
+    const date = new Date(),
+          formData = {},
+          fullPhoneInput = $('input[name="full_phone"]');
+
+    if (NameValidationResult && LastNameValidationResult && EmailValidationResult && PhoneValidationResult) {
+        formData.ordercode = date.valueOf();
+        formData.clientnamefirst = nameInput.val();
+        formData.clientnamelast = lastnameInput.val();
+        formData.clientemail = emailInput.val();
+        formData.clientphone = fullPhoneInput.val();
+        formData.customorder_source_url = cleanUrl;
+        formData.customorder_ga_code = "None";
+        formData.customorder_lead_IP = GetIpInfo(ipInfo, 'ip');
+        formData.customorder_source_add_info = pageAddInfo;
+        formData.customorder_lead_country = GetIpInfo(ipInfo, 'country');
+        formData.customorder_lead_form_date = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+        formData.customorder_lead_region = GetIpInfo(ipInfo, 'region');
+        formData.customorder_lead_city = GetIpInfo(ipInfo, 'city');
+        formData.customorder_lead_location = `Latitude: ${GetIpInfo(ipInfo, 'latitude')}, Longitude: ${GetIpInfo(ipInfo, 'longitude')}`;
+        formData.customorder_lead_timezone = GetIpInfo(ipInfo, 'timezone');
+        formData.customorder_lead_provider = GetIpInfo(ipInfo, 'org');
+        formData.customorder_lead_hostname = GetIpInfo(ipInfo, 'country_calling_code');
+        formData.customorder_utm_source = UrlParams(pageUrl, 'utm_source');
+        formData.customorder_utm_medium = UrlParams(pageUrl, 'utm_medium');
+        formData.customorder_utm_campaign = UrlParams(pageUrl, 'utm_campaign');
+        formData.customorder_utm_content = UrlParams(pageUrl, 'utm_content');
+        formData.customorder_utm_term = UrlParams(pageUrl, 'utm_term');
+        formData.customorder_form_name = nameInput.val();
+        formData.customorder_form_lastname = lastnameInput.val();
+        formData.customorder_lead_form_lang = pageLang;
+        formData.customorder_form_message = '';
+        formData.customorder_brand_interest = BrandInterest;
+        formData.customorder_product_interest = ProductInterest;
+
+        const queryString = Object.keys(formData).map(key => key + '=' + encodeURIComponent(formData[key])).join('&');
+
+       dataLayer.push({
+         'event': 'clientInfoEvent',
+         'clientEmail': formData.clientemail,
+         'clientNameFirst': formData.clientnamefirst,
+         'clientNameLast': formData.clientnamelast,
+         'clientPhone': formData.clientphone,
+         'customOrderLeadCountry': formData.customorder_lead_country,
+         'customOrderLeadFormLang': formData.customorder_lead_form_lang
+       });
 
 
-    function SubmitForm() {
-        formButton.prop('disabled', true).text('Отправка...');
 
-        if (NameValidationResult && LastNameValidationResult && EmailValidationResult && PhoneValidationResult) {
-            const formData = {
-                ordercode: Date.now(),
-                clientnamefirst: nameInput.val(),
-                clientnamelast: lastnameInput.val(),
-                clientemail: emailInput.val(),
-                clientphone: phoneInput.intlTelInput("getNumber"),
-                customorder_source_url: cleanUrl,
-                customorder_ga_code: "None",
-                customorder_lead_IP: GetIpInfo(ipInfo, 'ip'),
-                customorder_source_add_info: pageAddInfo,
-                customorder_lead_country: GetIpInfo(ipInfo, 'country'),
-                customorder_lead_form_date: new Date().toISOString().split('T')[0],
-                customorder_lead_region: GetIpInfo(ipInfo, 'region'),
-                customorder_lead_city: GetIpInfo(ipInfo, 'city'),
-                customorder_lead_location: `Latitude: ${GetIpInfo(ipInfo, 'latitude')}, Longitude: ${GetIpInfo(ipInfo, 'longitude')}`,
-                customorder_lead_timezone: GetIpInfo(ipInfo, 'timezone'),
-                customorder_lead_provider: GetIpInfo(ipInfo, 'org'),
-                customorder_lead_hostname: GetIpInfo(ipInfo, 'country_calling_code'),
-                customorder_utm_source: UrlParams(pageUrl, 'utm_source'),
-                customorder_utm_medium: UrlParams(pageUrl, 'utm_medium'),
-                customorder_utm_campaign: UrlParams(pageUrl, 'utm_campaign'),
-                customorder_utm_content: UrlParams(pageUrl, 'utm_content'),
-                customorder_utm_term: UrlParams(pageUrl, 'utm_term'),
-                customorder_form_name: nameInput.val(),
-                customorder_form_lastname: lastnameInput.val(),
-                customorder_lead_form_lang: pageLang,
-                customorder_form_message: '',
-                customorder_brand_interest: BrandInterest,
-                customorder_product_interest: ProductInterest
-            };
 
-            const queryString = $.param(formData);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', "https://hooks.zapier.com/hooks/catch/12700623/bazia5v/", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+            xhr.send(queryString);
 
-            dataLayer.push({
-                'event': 'clientInfoEvent',
-                'clientEmail': formData.clientemail,
-                'clientNameFirst': formData.clientnamefirst,
-                'clientNameLast': formData.clientnamelast,
-                'clientPhone': formData.clientphone,
-                'customOrderLeadCountry': formData.customorder_lead_country,
-                'customOrderLeadFormLang': formData.customorder_lead_form_lang
-            });
-
-            $.ajax({
-                type: "POST",
-                url: "https://hooks.zapier.com/hooks/catch/12700623/bazia5v/",
-                data: queryString,
-                success: function(response) {
-                    formValidMsg.removeClass('hide');
-                    setTimeout(function() {
-                        window.location.href = thankYouPageUrl;
-                    }, 1000);
-                },
-                error: function() {
-                    formErrorMsg.removeClass('hide');
-                    formButton.prop('disabled', false).text('Отправить');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    console.log(xhr.status);
                 }
-            });
-        } else {
-            formErrorMsg.removeClass('hide');
-            formButton.prop('disabled', false).text('Отправить');
-        }
+            }
+
+
+            formValidMsg.removeClass('hide');
+
+            formButton.attr('go', true);
+
+            setTimeout(function (){   
+                window.location.replace(thankYouPageUrl);
+                }, 1000);
+
+
+    } else {
+        console.log('Form Submission Error');
+        formButton.attr('disabled', true);
+        formErrorMsg.removeClass('hide');
     }
+}
 
-            // Инициализация intlTelInput для поля ввода телефона
-        phoneInput.intlTelInput({
-            initialCountry: "auto",
-            geoIpLookup: function(success, failure) {
-                $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
-                    var countryCode = (resp && resp.country) ? resp.country : "";
-                    success(countryCode);
-                });
-            },
-            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js" // Путь к utils.js для intlTelInput
-        });
+$(document).ready(() => {  
+    
+    //Initialize intlTelInput
+    phoneInput.intlTelInput({
+        initialCountry: "auto",
+        formatOnDisplay: true,
+        nationalMode: false,
+        showFlags: false,
+        hiddenInput: "full_phone",
+        preferredCountries: ["de", "fr", "ua"],
+        responsiveDropdown: false,
+        geoIpLookup: callback => {
+            fetch("https://ipapi.co/json")
+                .then(res => res.json())
+                .then(data => {
+                    callback(data.country_code);
+                    ipInfo = data;
+                })
+                .catch(() => callback("ca"));
+        },
+        utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.min.js",
+    });
 
-        // Валидация полей формы при изменении и потере фокуса
-  nameInput.on('change blur', function() {
+    //Validation
+    const activateButtonIfAllValid = () => {
+        if (NameValidationResult || LastNameValidationResult || EmailValidationResult || PhoneValidationResult) {
+            formButton.attr('disabled', false);
+            formErrorMsg.addClass('hide');
+        }
+    };
+
+    nameInput.on('change blur', function() {
         const value = nameInput.val();
 
         if (value === "") {
@@ -282,29 +319,25 @@ $(document).ready(() => {
         }
     });
 
-        // Функция для активации кнопки отправки, если все поля прошли валидацию
-        function checkFormValidation() {
-            if (NameValidationResult && LastNameValidationResult && EmailValidationResult && PhoneValidationResult) {
-                formButton.prop('disabled', false);
-            } else {
-                formButton.prop('disabled', true);
-            }
-        }
+    phoneInput.on("blur countrychange", function() {
+        const fullPhoneInput = $('input[name="full_phone"]');
+        let fullNumber = phoneInput.intlTelInput("getNumber");
+        fullPhoneInput.val(fullNumber);
 
-        // Вызов функции проверки валидации при изменении каждого поля
-        nameInput.on('input blur', checkFormValidation);
-        lastnameInput.on('input blur', checkFormValidation);
-        emailInput.on('input blur', checkFormValidation);
-        phoneInput.on('blur', checkFormValidation);
-
-
-    formButton.on('click', function(e) {
-        e.preventDefault();
-        SubmitForm();
     });
 
-    pageForm.on('submit', function(e) {
-        e.preventDefault();
-        SubmitForm();
-    });
+     formButton.click(function(e) {
+      e.preventDefault();
+      SubmitForm();
+     });
+
+     pageForm.submit(function(e) {
+      e.preventDefault();
+      SubmitForm();
+
+   });
+
+
 });
+
+
