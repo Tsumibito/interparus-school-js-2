@@ -119,15 +119,15 @@ function SubmitForm() {
 
         const queryString = Object.keys(formData).map(key => key + '=' + encodeURIComponent(formData[key])).join('&');
 
-       //dataLayer.push({
-       //  'event': 'clientInfoEvent',
-       //  'clientEmail': formData.clientemail,
-       //  'clientNameFirst': formData.clientnamefirst,
-        // 'clientNameLast': formData.clientnamelast,
-       //  'clientPhone': formData.clientphone,
-       //  'customOrderLeadCountry': formData.customorder_lead_country,
-       //  'customOrderLeadFormLang': formData.customorder_lead_form_lang
-      // });
+       dataLayer.push({
+         'event': 'clientInfoEvent',
+         'clientEmail': formData.clientemail,
+         'clientNameFirst': formData.clientnamefirst,
+         'clientNameLast': formData.clientnamelast,
+         'clientPhone': formData.clientphone,
+         'customOrderLeadCountry': formData.customorder_lead_country,
+         'customOrderLeadFormLang': formData.customorder_lead_form_lang
+       });
 
 
 
@@ -163,20 +163,7 @@ function SubmitForm() {
 
 $(document).ready(() => {  
 
-    console.log(ProductInterest);
-    console.log(thankYouPageUrl);
-    console.log(pageLang);
-     console.log(UrlParams);
-    console.log(pageForm); 
-    console.log(formButton);
-    console.log(nameInput);
-    console.log(lastnameInput);
-    console.log(emailInput);
-    console.log(phoneInput);
-    console.log(messageInput);
-
-
-    
+   
     //Initialize intlTelInput
     phoneInput.intlTelInput({
         initialCountry: "auto",
