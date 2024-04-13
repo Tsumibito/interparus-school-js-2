@@ -25,7 +25,7 @@ const getThankYouPageUrl = (cleanUrl) => {
     return `${baseUrl}${languagePath}thank-you-main`;
 };
 
-const thankYouPageUrl = getThankYouPageUrl(cleanUrlT);
+const thankYouPageUrl = getThankYouPageUrl(cleanUrl);
 
 
 function GetProductInterest(pageUrl) {
