@@ -63,17 +63,16 @@ let ipInfo,
     EmailValidationResult = false,
     PhoneValidationResult = false;
 
-
 function UrlParams(pageUrl, paramName) {
     const params = new URLSearchParams(pageUrl.split('?')[1]);
 
     if (params.has(paramName)) {
         const paramValue = params.get(paramName);
-        setCookie(paramName, paramValue, 1); // Устанавливаем куки на 24 часа
+        sessionStorage.setItem(paramName, paramValue); // Сохраняем в Session Storage
         return paramValue;
     } else {
-        const cookieValue = getCookie(paramName);
-        return cookieValue ? cookieValue : 'None';
+        const storageValue = sessionStorage.getItem(paramName);
+        return storageValue ? storageValue : 'None';
     }
 }
 
@@ -310,7 +309,5 @@ $(document).ready(() => {
       SubmitForm();
 
    });
-
-
 });
 
