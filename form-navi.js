@@ -30,8 +30,8 @@ const thankYouPageUrl = getThankYouPageUrl(cleanUrl);
 
 function GetProductInterest(pageUrl) {
     const path = new URL(pageUrl).pathname;
-    const match = path.match(/\/\w{2}(\/.*)$/);
-    const key = match ? match[1] : path;  
+    const match = path.match(/\/\w{2}(\/.*)?$/); 
+    const key = match && match[1] ? match[1] : '/';  
     return ProductCatalogue[key] || 'None';
 };
 
