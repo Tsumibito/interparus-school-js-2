@@ -163,6 +163,9 @@ function SubmitForm() {
 }
 
 $(document).ready(() => {  
+
+   console.log('Type of d:', typeof d);
+   console.log('Return value of d():', d());
     
     //Initialize intlTelInput
     phoneInput.intlTelInput({
