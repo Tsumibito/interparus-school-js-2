@@ -46,7 +46,6 @@ const ProductCatalogue = {
     },
     ProductInterest = GetProductInterest(cleanUrl);
 
-console.log(ProductInterest);
 
 const pageLang = pageUrl.includes('navi.training/ua') ? 'UA':
                         pageUrl.includes('navi.training/en') ? 'EN' :
