@@ -1,7 +1,7 @@
 const nameInput = $('#First-Name'),
     lastnameInput = $('#Last-Name'),
     emailInput = $('#Email'),
-    phoneInput = $('[phone-field]'),
+    phoneInput = $('#Phone'),
     messageInput = $('#Message'),
     pageUrl = $(location).attr('href'),
     cleanUrl = pageUrl.split('#')[0].split('?')[0],
@@ -49,7 +49,6 @@ const ProductCatalogue = {
     },
     ProductInterest = GetProductInterest(cleanUrl);
 
-console.log(ProductInterest);
 
 const pageLang = pageUrl.includes('navi.training/ua') ? 'UA':
                         pageUrl.includes('navi.training/ru') ? 'RU' :
@@ -163,6 +162,14 @@ function SubmitForm() {
 }
 
 $(document).ready(() => {  
+
+    console.log(ProductInterest);
+    console.log(thankYouPageUrl);
+    console.log(pageLang);
+     console.log(UrlParams);
+    console.log(pageForm); 
+    console.log(formButton);
+    
     
     //Initialize intlTelInput
     phoneInput.intlTelInput({
