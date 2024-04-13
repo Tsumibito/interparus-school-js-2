@@ -120,15 +120,15 @@ function SubmitForm() {
 
         const queryString = Object.keys(formData).map(key => key + '=' + encodeURIComponent(formData[key])).join('&');
 
-       dataLayer.push({
-         'event': 'clientInfoEvent',
-         'clientEmail': formData.clientemail,
-         'clientNameFirst': formData.clientnamefirst,
-         'clientNameLast': formData.clientnamelast,
-         'clientPhone': formData.clientphone,
-         'customOrderLeadCountry': formData.customorder_lead_country,
-         'customOrderLeadFormLang': formData.customorder_lead_form_lang
-       });
+       //dataLayer.push({
+       //  'event': 'clientInfoEvent',
+       //  'clientEmail': formData.clientemail,
+       //  'clientNameFirst': formData.clientnamefirst,
+        // 'clientNameLast': formData.clientnamelast,
+       //  'clientPhone': formData.clientphone,
+       //  'customOrderLeadCountry': formData.customorder_lead_country,
+       //  'customOrderLeadFormLang': formData.customorder_lead_form_lang
+      // });
 
 
 
@@ -163,9 +163,6 @@ function SubmitForm() {
 }
 
 $(document).ready(() => {  
-
-   console.log('Type of d:', typeof d);
-   console.log('Return value of d():', d());
     
     //Initialize intlTelInput
     phoneInput.intlTelInput({
@@ -315,6 +312,7 @@ $(document).ready(() => {
       SubmitForm();
 
    });
+
 
 });
 
