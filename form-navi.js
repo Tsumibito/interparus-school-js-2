@@ -11,14 +11,14 @@ const nameInput = $('#First-Name'),
     formValidMsg = $('#form-valid-msg'),
     BrandInterest = "Navi.training";
 
-const getThankYouPageUrl = (cleanUrlT) => {
+const getThankYouPageUrl = (cleanUrl) => {
     const baseUrl = 'https://www.navi.training';
-    const languageSegments = ['ru', 'ua', 'en'];  
+    const languageSegments = ['ru', 'ua', 'en'];
     const defaultLanguage = 'ru';
 
     const foundLanguage = languageSegments.find(segment => {
         const regex = new RegExp(`/${segment}(/|$)`);
-        return regex.test(cleanUrlT);
+        return regex.test(cleanUrl);
     });
 
     const languagePath = foundLanguage ? `/${foundLanguage}/` : `/${defaultLanguage}/`;
