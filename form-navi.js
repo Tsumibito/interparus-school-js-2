@@ -5,7 +5,7 @@ const nameInput = $('#First-Name'),
     messageInput = $('#Message'),
     pageUrl = $(location).attr('href'),
     cleanUrl = pageUrl.split('#')[0].split('?')[0],
-    pageForm = $('[ob_form_main]'),
+    pageForm = $('#Contact-form-ob'),
     formButton = $('[ob_button]'),
     formErrorMsg = $('#form-error-msg'),
     formValidMsg = $('#form-valid-msg'),
@@ -312,7 +312,6 @@ $(document).ready(() => {
       SubmitForm();
 
    });
-
 
 });
 
