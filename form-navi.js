@@ -169,7 +169,13 @@ $(document).ready(() => {
      console.log(UrlParams);
     console.log(pageForm); 
     console.log(formButton);
-    
+    console.log(nameInput);
+    console.log(lastnameInput);
+    console.log(emailInput);
+    console.log(phoneInput);
+    console.log(messageInput);
+
+
     
     //Initialize intlTelInput
     phoneInput.intlTelInput({
