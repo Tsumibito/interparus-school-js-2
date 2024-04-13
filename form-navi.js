@@ -1,7 +1,7 @@
 const nameInput = $('#First-Name'),
     lastnameInput = $('#Last-Name'),
     emailInput = $('#Email'),
-    phoneInput = $('#Phone'),
+    phoneInput = $('[phone-field]'),
     messageInput = $('#Message'),
     pageUrl = $(location).attr('href'),
     cleanUrl = pageUrl.split('#')[0].split('?')[0],
