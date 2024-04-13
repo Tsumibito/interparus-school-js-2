@@ -25,12 +25,14 @@ const getThankYouPageUrl = (cleanUrl) => {
     return `${baseUrl}${languagePath}thank-you-main`;
 };
 
-const thankYouPageUrl = getThankYouPageUrl(cleanUrl);
+const thankYouPageUrl = getThankYouPageUrl(cleanUrlT);
 
 
 function GetProductInterest(pageUrl) {
     const path = new URL(pageUrl).pathname;
-    return ProductCatalogue[path] || 'None';
+    const match = path.match(/\/\w{2}(\/.*)$/);
+    const key = match ? match[1] : path;  
+    return ProductCatalogue[key] || 'None';
 };
 
 
@@ -310,5 +312,7 @@ $(document).ready(() => {
       SubmitForm();
 
    });
+
+
 });
 
