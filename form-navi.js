@@ -11,20 +11,21 @@ const nameInput = $('#First-Name'),
     formValidMsg = $('#form-valid-msg'),
     BrandInterest = "Navi.training";
 
-const pageUrlT = $(location).attr('href'),
-      cleanUrlT = pageUrlT.split('#')[0].split('?')[0],
-      getThankYouPageUrl = (cleanUrlT) => {
-          const domainPattern = /(https?:\/\/[^\/]*navi\.training)(\/(en|ua))?/;
-          const match = cleanUrlT.match(domainPattern);
+const getThankYouPageUrl = (cleanUrlT) => {
+    const baseUrl = 'https://www.navi.training';
+    const languageSegments = ['ru', 'ua', 'en'];  
+    const defaultLanguage = 'ru';
 
-          if (match) {
-              const languageSegment = match[3] || ''; 
-              return languageSegment ? `${match[1]}/${languageSegment}/thank-you-main` : `${match[1]}/thank-you-main`;
-          } else {
-              return 'None';
-          }
-      },
-     thankYouPageUrl = getThankYouPageUrl(cleanUrlT);
+    const foundLanguage = languageSegments.find(segment => {
+        const regex = new RegExp(`/${segment}(/|$)`);
+        return regex.test(cleanUrlT);
+    });
+
+    const languagePath = foundLanguage ? `/${foundLanguage}/` : `/${defaultLanguage}/`;
+    return `${baseUrl}${languagePath}thank-you-main`;
+};
+
+const thankYouPageUrl = getThankYouPageUrl(cleanUrlT);
 
 
 function GetProductInterest(pageUrl) {
@@ -46,12 +47,13 @@ const ProductCatalogue = {
     },
     ProductInterest = GetProductInterest(cleanUrl);
 
+console.log(ProductInterest);
 
 const pageLang = pageUrl.includes('navi.training/ua') ? 'UA':
-                        pageUrl.includes('navi.training/en') ? 'EN' :
-                         'RU',
+                        pageUrl.includes('navi.training/ru') ? 'RU' :
+                         'EN',
       pageAddInfo = (() => {
-        const domainPattern = /(www\.navi.training\.com)/;
+        const domainPattern = /(www\.navi\.training)/;
         const match = pageUrl.match(domainPattern);
         return match ? match[0] : 'None';
     })();
