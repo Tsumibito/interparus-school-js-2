@@ -133,7 +133,7 @@ function SubmitForm() {
 
 
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', "https://n8n.navi.training/webhook-test/3faeb9da-f0c7-496f-90de-30788bf4f7a1" , true);
+            xhr.open('POST', "https://n8n.navi.training/webhook/3faeb9da-f0c7-496f-90de-30788bf4f7a1" , true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
             xhr.send(queryString);
 
