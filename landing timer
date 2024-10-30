@@ -1,0 +1,39 @@
+(function() {
+    function pad(num) {
+        return ("0" + num).slice(-2);
+    }
+
+    function updateTimer() {
+        var startDateElement = document.getElementById('start_date');
+        var timerElement = document.getElementById('start_timer');
+
+        if (!startDateElement || !timerElement) return;
+
+        var dateParts = startDateElement.textContent.split('.');
+        var targetDate = new Date(dateParts[1], dateParts[0] - 1, 1, 9, 0, 0);
+
+        var now = new Date();
+        var timeUntilStart = targetDate - now;
+
+        if (timeUntilStart <= 0) {
+            timerElement.textContent = "Курс уже начался!";
+            return;
+        }
+
+        var totalSeconds = Math.floor(timeUntilStart / 1000);
+        var seconds = totalSeconds % 60;
+        var totalMinutes = Math.floor(totalSeconds / 60);
+        var minutes = totalMinutes % 60;
+        var totalHours = Math.floor(totalMinutes / 60);
+
+        var timerString = "";
+        timerString += totalHours + ":";
+        timerString += pad(minutes) + ":";
+        timerString += pad(seconds);
+
+        timerElement.textContent = timerString;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+})();
